@@ -3,4 +3,5 @@ George Athanasopoulos
 Lab 2: GIT commands
 """
 
-print("\nWelcome to Git Commands")
+username = input("Enter a username: ")
+print(f"\nWelcome to Git Commands {username}")
