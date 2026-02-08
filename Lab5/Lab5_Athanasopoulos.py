@@ -27,7 +27,7 @@ y2 = collectnum('y2')
 # testing
 # print(f"Distance = {calculate_distance(x1,x2,y1,y2)}")
 
-distance = calculate_distance(x1,x2,y1,y2)
-print_distance(x1,x2,y1,y2,distance)
+GUESS_NUMBER = 7
 
-print("\n----- EXERCISE  -----")
+random_number = generate_random(1, 10)
+compare_with_guess(random_number, GUESS_NUMBER)

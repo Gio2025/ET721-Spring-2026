@@ -5,6 +5,7 @@ Lab 5, Functions
 """
 
 import math
+import random
 
 # Example 1: User-defined function
 def area_rectangle(width, length):
@@ -34,3 +35,14 @@ def print_distance(x1,x2,y1,y2,distance):
 
 
 # EXERCISE
+def generate_random(min_num, max_num):
+    return random.randint(min_num, max_num)
+
+
+def compare_with_guess(random_num, guess_num):
+    if random_num < guess_num:
+        print("The number is smaller than the guess number")
+    elif random_num > guess_num:
+        print("The number is bigger than the guess number")
+    else:
+        print("You got it!")
