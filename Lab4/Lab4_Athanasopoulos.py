@@ -72,3 +72,22 @@ print(f"{contacts}")
 
 
 print("\n----- EXERCISE  -----")
+
+users = ["peterpan@yahoo.com", "annie@hotmail.com", "Carl@hotmail.com", "martha@gmail.com", "cassie@yahoo.com", "Josue@hotmail.com", "John@hotmail.com"]
+
+email_count = {
+    "gmail": 0,
+    "hotmail": 0,
+    "yahoo": 0
+}
+
+for email in users:
+    if "gmail" in email:
+        email_count["gmail"] += 1
+    elif "hotmail" in email:
+        email_count["hotmail"] += 1
+    elif "yahoo" in email:
+        email_count["yahoo"] += 1
+
+print("Email provider counts:")
+print(email_count)
