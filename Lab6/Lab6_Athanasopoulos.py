@@ -82,8 +82,11 @@ class BankAccount(object):
         return self.b
     
     def withdraw(self, amount):
-        self.b -= amount
-        return self.b
+        if amount <= self.b:
+            self.b -= amount
+            return self.b
+        else:
+            print("Insufficient funds. Cannot withdraw that amount")
 
 useraccount = BankAccount(123456789, "George Athanasopoulos")
 useraccount.withdraw(700)
