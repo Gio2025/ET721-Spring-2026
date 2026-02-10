@@ -71,27 +71,29 @@ print(f"The perimeter of rectangle 2 = {rectangle2.perimeter()}")
 
 
 print("\n ----- EXERCISE -----")
-class BankAccount(object):
+class BankAccount:
     def __init__(self, account_number, account_holder, balance = 250.50):
         self.n = account_number
         self.h = account_holder
         self.b = balance
-    
+
     def deposit(self, amount):
         self.b += amount
-        return self.b
-    
+        print(f"${amount} deposited successfully.")
+
     def withdraw(self, amount):
         if amount <= self.b:
             self.b -= amount
-            return self.b
+            print(f"${amount} withdrawn successfully.")
         else:
-            print("Insufficient funds. Cannot withdraw that amount")
+            print("Insufficient balance. Withdrawal cannot be made.")
+
+    def balance(self):
+        print(f"Final balance $ {self.b}")
 
 useraccount = BankAccount(123456789, "George Athanasopoulos")
+
 useraccount.withdraw(700)
 useraccount.deposit(1000)
 useraccount.withdraw(500)
-
-print(f"Final balance {useraccount.b}")
-
+useraccount.balance()
