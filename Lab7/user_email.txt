@@ -1,0 +1,6 @@
+Users           Emails
+George          george@gmail.com
+Kenneth         kenneth@hotmail.com
+Muhhamed        muhhamed@yahoo.com
+Jalen           jalen@yahoo.com
+Brandon         brandon@gmail.com
