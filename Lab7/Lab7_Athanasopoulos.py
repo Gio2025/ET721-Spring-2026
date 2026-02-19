@@ -90,18 +90,19 @@ def email_read(filename):
         with open(filename, "r") as file:
             lines = file.readlines()
             for line in lines:
+                line = line.lower()
                 if "gmail" in line:
                     gmail_count += 1
-                elif "yahoo" in line:
+                if "yahoo" in line:
                     yahoo_count += 1
-                elif "hotmail" in line:
+                if "hotmail" in line:
                     hotmail_count += 1
 
         
         with open("reportemail.txt", "w") as email:
-            email.write(f"gmail  : {gmail_count}")
-            email.write(f"yahoo  : {yahoo_count}")
-            email.write(f"hotmail: {hotmail_count}")
+            email.write(f"gmail  : {gmail_count}\n")
+            email.write(f"yahoo  : {yahoo_count}\n")
+            email.write(f"hotmail: {hotmail_count}\n")
 
             print(f"gmail   = {gmail_count}")
             print(f"yahoo   = {yahoo_count}")

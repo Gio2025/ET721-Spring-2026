@@ -1,6 +1,12 @@
 Users           Emails
+
 George          george@gmail.com
 Kenneth         kenneth@hotmail.com
 Muhhamed        muhhamed@yahoo.com
 Jalen           jalen@yahoo.com
 Brandon         brandon@gmail.com
+Charlotte       charlotte@gmail.com
+Susan           susan@hotmail.com
+Emily           emily@yahoo.com
+Barbara         barabra@gmail.com
+Fiona           fiona@gmail.com
