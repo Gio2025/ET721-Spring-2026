@@ -111,3 +111,80 @@ plt.legend()
 plt.show(block=True)
 
 input("Press enter to close...")
+
+
+print("\n----- EXERCISE -----")
+# a) Download the CSV file
+import requests
+import pandas as pd
+
+url = "https://raw.githubusercontent.com/openfootball/football.json/master/2020-21/en.1.csv"
+file_name = "epl_matches.csv"
+
+print("\nDownloading EPL data...")
+response = requests.get(url)
+
+if response.status_code == 200:
+    with open(file_name, "wb") as f:
+        f.write(response.content)
+    print("Download complete.")
+else:
+    print("Download failed.")
+
+
+# b) Load DataFrame from CSV
+matches = pd.read_csv(file_name)
+print("\nMatches Data:")
+print(matches.head())
+
+
+# c) Filter matches for a specific team
+team_name = "Manchester United"
+
+team_home = matches[matches["HomeTeam"] == team_name]
+team_away = matches[matches["AwayTeam"] == team_name]
+
+
+# d) Calculate averages
+
+# Goals scored
+home_avg_goals_scored = team_home["FTHG"].mean()
+away_avg_goals_scored = team_away["FTAG"].mean()
+
+# Goals conceded
+home_avg_goals_conceded = team_home["FTAG"].mean()
+away_avg_goals_conceded = team_away["FTHG"].mean()
+
+print(f"\n{team_name} Home Avg Goals Scored: {home_avg_goals_scored}")
+print(f"{team_name} Away Avg Goals Scored: {away_avg_goals_scored}")
+print(f"{team_name} Home Avg Goals Conceded: {home_avg_goals_conceded}")
+print(f"{team_name} Away Avg Goals Conceded: {away_avg_goals_conceded}")
+
+
+# e) Visualization
+import matplotlib.pyplot as plt
+
+metrics = ["Goals Scored", "Goals Conceded"]
+home_values = [home_avg_goals_scored, home_avg_goals_conceded]
+away_values = [away_avg_goals_scored, away_avg_goals_conceded]
+
+x = range(len(metrics))
+bar_width = 0.35
+
+plt.figure(figsize=(8,5))
+
+plt.bar([i - bar_width/2 for i in x], home_values,
+        width=bar_width, label='Home', color='skyblue')
+
+plt.bar([i + bar_width/2 for i in x], away_values,
+        width=bar_width, label='Away', color='orange')
+
+plt.xticks(x, metrics)
+plt.title(f"{team_name} — Home vs Away Comparison (2020-21)")
+plt.ylabel("Average Goals")
+plt.legend()
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.tight_layout()
+
+plt.show(block=True)
+input("Press Enter to close...")
