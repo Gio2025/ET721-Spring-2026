@@ -26,7 +26,7 @@ def about():
 # quotes page
 @app.route('/quotes')
 def quotes():
-    return '<h1>Quotes</h1>'
+    return render_template('quotes.html')
 
 # run the app
 if __name__ == '__main__':
