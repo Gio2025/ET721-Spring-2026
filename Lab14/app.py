@@ -10,52 +10,53 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # Database connection
-db = mysql.connect.connect(
-    host = 'localhost',
-    user = 'flaskuser',
-    password = 'password123',
-    database = 'blogDB'
-)
+app.config['MYSQL_HOST'] = '127.0.0.1'
+app.config['MYSQL_USER'] = 'flaskuser'
+app.config['MYSQL_PASSWORD'] = 'password123'
+app.config['MYSQL_DB'] = 'blogDB'
 
-# Create a tool 'cursor' to be used to run querie in database
-cursor = db.cursor()
+mysql = MySQL(app)
+
+# Create a tool 'cursor' to be used to run queries in database
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/add_blog')
-def add_blog():
+@app.route('/addblog', methods=['POST'])
+def addblog():
     username = request.form['username']
     email = request.form['email']
     title = request.form['title']
     content = request.form['content']
 
+    cursor = mysql.connection.cursor()
+
     # Insert into table users
     cursor.execute("INSERT INTO users(username, email) VALUES (%s, %s)", (username, email))
+    mysql.connection.commit()
 
-    db.commit()
-
-    # Get the ID of the last row that was inserted into the database and store it in user_id
-    user_id = cursor.lastrowid
+    # Get last inserted id
+    userid = cursor.lastrowid
 
     # insert data into table blog
-    cursor.execut("INSERT INTO blog(user_id, title, content) VALUES(%s, %s, %s), (user_id, title, content)")
+    cursor.execute(
+        "INSERT INTO blog(user_id, title, content) VALUES (%s, %s, %s)",
+        (userid, title, content)
+    )
+    mysql.connection.commit()
 
-    db.commit()
-
-    return redirect('/blogs')
-
+    return redirect(url_for('blogs'))
 
 @app.route('/blogs')
 def blogs():
+    cursor = mysql.connection.cursor()
+
     cursor.execute("SELECT blog.id, users.username, blog.title, blog.content, blog.created_at FROM blog JOIN users ON blog.user_id = users.userid")
 
-    # Get all the data and store them in 'data' 
     data = cursor.fetchall()
 
-    return render_template('blogs.html', blogs = data)
-
+    return render_template('blogs.html', blogs=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

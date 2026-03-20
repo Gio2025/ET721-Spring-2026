@@ -1,13 +1,14 @@
-{%extends 'base.html'%}
-{%block title%}My blog {%endblock%}
-{%block msg%} Georg Athanasopoulos All Blogs {%endblock%}
-{%block content%}
-{%for blog in blogs%}
-<div class="separator">
-    <h3>{{blog[2]}}</h3>
-    <p><strong>By: {{blog[1}}</strong> </p>
-    <p>{{blog[3]}}</p>
-    <p><em>Posted on {{blog[4]}}</em></p>
+{% extends 'base.html' %}
+{% block title %}My blog{% endblock %}
+{% block msg %} George Athanasopoulos All Blogs {% endblock %}
+
+{% block content %}
+{% for blog in blogs %}
+<div class="blogseparator">
+    <h3>{{ blog[2] }}</h3>
+    <p><strong>By: {{ blog[1] }}</strong></p>
+    <p>{{ blog[3] }}</p>
+    <p><em>Posted on {{ blog[4] }}</em></p>
 </div>
-{%endfor%}
-{%endblock%}
+{% endfor %}
+{% endblock %}
