@@ -1,0 +1,106 @@
+*{box-sizing: border-box; margin: 0; padding: 0;}
+
+.title{
+    text-align: center; 
+    color: magenta;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.subtitle{
+    text-align: center; 
+    color: darkblue;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.maincontainer{
+    width: 60%;
+    margin: 2rem auto;
+    padding: 0.8rem;
+    border: solid 1px lightgrey;
+    border-radius: 10px;
+}
+
+.footer{
+    background-color: rgb(1, 1, 80);
+    color: aliceblue;
+    padding: 0.8rem;
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+form{
+    width: 45%; 
+    margin: auto;
+}
+
+input{
+    width: 100%; 
+    display: block; 
+    margin-bottom: 1rem; 
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+form button{
+    width: 100%;
+}
+
+button{
+    width: auto;
+    display: inline-block;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    border: none; 
+    padding: 0.5rem 0.8rem; 
+    border-radius: 8px; 
+    background-color: darkblue; 
+    color: white;
+    font-size: 0.9rem;
+}
+
+button:hover{
+    background-color: crimson;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+ul{
+    margin-top: 1rem;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+    padding: 0.7rem;
+    border-bottom: 1px ridge lightgrey;
+    font-size: 0.9rem;
+}
+
+#updatesection{
+    margin-top: 2rem;
+}
+
+#response{
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.blogseparator{
+    border-bottom: 1px ridge lightgrey; 
+    margin-bottom: 1rem;
+}
+
+.item-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.update-box{
+    width: 200px;
+}
