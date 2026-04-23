@@ -7,23 +7,24 @@
     <link rel="stylesheet" href="{{url_for('static', filename = 'imguploader_style.css')}}">
 </head>
 <body>
-    <h1 class="title">Upload Image by George</h1>
+    <h1 class="title">Upload Image by George Athanasopoulos</h1>
     <form id="uploadform">
-        <input type="file", name="image", id="imageinput" required>
+        <input type="file", name="image", id="imageinput">
         <button type="submit", class="btnupload">Upload</button>
     </form>
 
-    <p id="message">Testing</p>
+    <p id="message"></p>
 
     <h2 class="subtitle">Gallery</h2>
     <div class="gallery" id="gallery">
-        <div class="card">
-            <img src="{{url_for('static', filename = 'uploads/nyc.jpg')}}">
-        </div>
+        {% for image in images %}
+            <div class="card" id="images-{{image.id}}">
+                <img src="{{url_for('static', filename = 'uploads/'+image.filename)}}">
+                <button onclick="deleteimage({{image.id}})" class="btndelete">Delete</button>
+            </div>
+        {% endfor %}
 
     </div>
-
-
 
 
     <script src="{{url_for('static', filename = 'imguploader_script.js')}}"></script>

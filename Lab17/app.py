@@ -27,7 +27,7 @@ def get_db_connection():
     return mysql.connector.connect(**db_config)
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 #------------------------------------
 # Loading Page
@@ -69,6 +69,37 @@ def upload_image():
 
         return jsonify({'message' : 'Image uploaded successfully!'})
     return jsonify({'error' : 'Invalid file type'}), 400
+
+#------------------------------------
+# Delete an image route
+#------------------------------------
+@app.route('/delete/<int:image_id>', methods=['DELETE'])
+def delete_image(image_id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    # get filename
+    cursor.execute("SELECT filename FROM images WHERE id = %s", (image_id,))
+    image = cursor.fetchone()
+
+    if not image:
+        cursor.close()
+        conn.close()
+        return jsonify({'error' : 'Image not found'}), 404
+    
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], image['filename'])
+
+    # delete from database
+    cursor.execute("DELETE FROM images WHERE id = %s", (image_id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    # delete file from the folder
+    if os.path.exists(filepath):
+        os.remove(filepath)
+
+    return jsonify({'message' : 'Message successfully deleted!'})
 
 #------------------------------------
 # Run App
